@@ -2,16 +2,14 @@ package com.example.androidproficiencyexcercise;
 
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.androidproficiencyexcercise.datasource.Stub;
 import com.example.androidproficiencyexcercise.model.CanadaRecord;
@@ -44,7 +42,8 @@ public class SwipeRefreshLayoutFragment extends Fragment {
         listView = view.findViewById(R.id.listView);
 
         recordsOfCanada = Stub.getRecords();
-        ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, recordsOfCanada);
+
+        RecordAdapter adapter = new RecordAdapter(getContext(), R.layout.row_layout, recordsOfCanada);
         listView.setAdapter(adapter);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

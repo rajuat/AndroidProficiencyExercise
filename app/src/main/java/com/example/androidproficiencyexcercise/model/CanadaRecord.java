@@ -1,5 +1,7 @@
 package com.example.androidproficiencyexcercise.model;
 
+import androidx.annotation.NonNull;
+
 public class CanadaRecord {
     private String title;
     private String description;
@@ -27,5 +29,11 @@ public class CanadaRecord {
 
     public void setImageReference(String imageReference) {
         this.imageReference = imageReference;
+    }
+
+
+    @Override
+    public String toString() {
+        return title + description + imageReference;
     }
 }
