@@ -15,15 +15,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.androidproficiencyexcercise.backend.APIClient;
 import com.example.androidproficiencyexcercise.backend.APIInterface;
-import com.example.androidproficiencyexcercise.datasource.Stub;
 import com.example.androidproficiencyexcercise.model.AboutCanada;
-import com.example.androidproficiencyexcercise.model.CanadaRecord;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.internal.EverythingIsNonNull;
 
 
 /**
@@ -32,14 +29,13 @@ import retrofit2.Response;
 public class SwipeRefreshLayoutFragment extends Fragment {
     private final String TAG = "SwipeRefreshLayoutFrag";
 
-    private List<CanadaRecord> recordsOfCanada;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ListView listView;
 
     private APIInterface apiService;
 
+    // Required empty public constructor
     public SwipeRefreshLayoutFragment() {
-        // Required empty public constructor
     }
 
 
@@ -56,34 +52,25 @@ public class SwipeRefreshLayoutFragment extends Fragment {
         Call<AboutCanada> nationalFactsCall = apiService.getNationalFacts();
         nationalFactsCall.enqueue(new Callback<AboutCanada>() {
             @Override
-            public void onResponse(Call<AboutCanada> call, Response<AboutCanada> response) {
-                AboutCanada body = response.body();
+            public void onResponse(@EverythingIsNonNull Call<AboutCanada> call, @EverythingIsNonNull Response<AboutCanada> response) {
+                AboutCanada aboutCanada = response.body();
 
                 AppCompatActivity activity = ((AppCompatActivity) getActivity());
                 ActionBar actionBar = activity.getSupportActionBar();
-                if (actionBar != null && body.getTitle() != null) {
-                    actionBar.setTitle(body.getTitle());
+                if (actionBar != null && aboutCanada.getTitle() != null) {
+                    actionBar.setTitle(aboutCanada.getTitle());
                 }
-                NationalFactsAdapter adapter = new NationalFactsAdapter(getContext(), activity, R.layout.row_layout, body.getNationalFacts());
+                NationalFactsAdapter adapter = new NationalFactsAdapter(getContext(), R.layout.row_layout, aboutCanada.getNationalFacts());
                 listView.setAdapter(adapter);
             }
 
             @Override
-            public void onFailure(Call<AboutCanada> call, Throwable t) {
+            public void onFailure(@EverythingIsNonNull Call<AboutCanada> call, Throwable t) {
                 Log.d(TAG, "onFailure: ");
             }
         });
-        recordsOfCanada = Stub.getRecords();
 
-
-
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-
-            @Override
-            public void onRefresh() {
-                Log.d(TAG, "onRefresh: ");
-            }
-        });
+        swipeRefreshLayout.setOnRefreshListener(() -> Log.d(TAG, "onRefresh: "));
 
         return view;
     }
