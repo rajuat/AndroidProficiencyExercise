@@ -3,9 +3,10 @@ package com.example.androidproficiencyexcercise.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class AboutCanada {
+public class AboutCanada implements Serializable {
 
     @SerializedName("title")
     @Expose
