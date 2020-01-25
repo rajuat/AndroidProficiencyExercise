@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.savedstate.SavedStateRegistryOwner;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.androidproficiencyexcercise.view.SwipeRefreshLayoutFragment;
 import com.example.androidproficiencyexcercise.viewmodel.SavedStateViewModel;
@@ -17,8 +18,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.container, new SwipeRefreshLayoutFragment())
-                .commit();
+        // Avoid getting Fragment created twice
+        if(savedInstanceState == null ) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container, new SwipeRefreshLayoutFragment())
+                    .commit();
+        }
     }
 }

@@ -2,23 +2,24 @@ package com.example.androidproficiencyexcercise.viewmodel;
 
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
+import androidx.savedstate.SavedStateRegistryOwner;
 
 import com.example.androidproficiencyexcercise.model.AboutCanada;
 
 public class SavedStateViewModel extends ViewModel {
-    private final String KEY = "KEY";
-    private SavedStateHandle state;
+    private AboutCanada aboutCanada;
 
-    public SavedStateViewModel(SavedStateHandle savedStateHandle) {
-        state = savedStateHandle;
+    // No argument constructor needed for ViewModel
+    public SavedStateViewModel(){
+
     }
 
     public void setFactsAboutCanada(AboutCanada aboutCanada){
-        state.set(KEY, aboutCanada);
+        this.aboutCanada = aboutCanada;
     }
 
     public AboutCanada getFactsAboutCanada(){
-        return state.get(KEY);
+        return aboutCanada;
     }
 
 }
