@@ -1,8 +1,8 @@
-package com.example.androidproficiencyexcercise.viewmodel;
+package com.example.androidproficiencyexercise.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 
-import com.example.androidproficiencyexcercise.model.AboutCanada;
+import com.example.androidproficiencyexercise.model.AboutCanada;
 
 /**
  * Using ViewModel for cache as ViewModel lives for the entire lifecycle of Activity and Fragment.

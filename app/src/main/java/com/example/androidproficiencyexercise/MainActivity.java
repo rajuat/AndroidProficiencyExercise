@@ -1,11 +1,10 @@
-package com.example.androidproficiencyexcercise;
+package com.example.androidproficiencyexercise;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.androidproficiencyexcercise.view.SwipeRefreshLayoutFragment;
-import com.example.androidproficiencyexercise.R;
+import com.example.androidproficiencyexercise.view.SwipeRefreshLayoutFragment;
 
 public class MainActivity extends AppCompatActivity {
 

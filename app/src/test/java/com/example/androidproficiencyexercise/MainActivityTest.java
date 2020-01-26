@@ -1,4 +1,4 @@
-package com.example.androidproficiencyexcercise;
+package com.example.androidproficiencyexercise;
 
 import androidx.fragment.app.Fragment;
 
@@ -28,17 +28,17 @@ public class MainActivityTest {
     }
 
     @Test
-    public void shouldNotBeNull() {
+    public void verifyActivityExist() {
         assertNotNull(activity);
     }
 
     @Test
-    public void determinesTitle(){
+    public void verifyTitle(){
         assertEquals("Android Proficiency Exercise", activity.getTitle().toString());
     }
 
     @Test
-    public void hasAFragment(){
+    public void shouldContainOneFragment(){
         List<Fragment> fragments = activity.getSupportFragmentManager().getFragments();
         assertEquals(1, fragments.size());
     }

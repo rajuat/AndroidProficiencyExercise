@@ -1,6 +1,6 @@
-package com.example.androidproficiencyexcercise.backend;
+package com.example.androidproficiencyexercise.backend;
 
-import com.example.androidproficiencyexcercise.model.AboutCanada;
+import com.example.androidproficiencyexercise.model.AboutCanada;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

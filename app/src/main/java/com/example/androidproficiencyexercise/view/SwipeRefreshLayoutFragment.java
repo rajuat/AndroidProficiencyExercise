@@ -1,4 +1,4 @@
-package com.example.androidproficiencyexcercise.view;
+package com.example.androidproficiencyexercise.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,11 +14,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.androidproficiencyexercise.R;
-import com.example.androidproficiencyexcercise.backend.APIClient;
-import com.example.androidproficiencyexcercise.backend.APIInterface;
-import com.example.androidproficiencyexcercise.model.AboutCanada;
-import com.example.androidproficiencyexcercise.utils.NetworkCheck;
-import com.example.androidproficiencyexcercise.viewmodel.SavedStateViewModel;
+import com.example.androidproficiencyexercise.backend.APIClient;
+import com.example.androidproficiencyexercise.backend.APIInterface;
+import com.example.androidproficiencyexercise.model.AboutCanada;
+import com.example.androidproficiencyexercise.utils.NetworkCheck;
+import com.example.androidproficiencyexercise.viewmodel.SavedStateViewModel;
 
 import retrofit2.Call;
 import retrofit2.Callback;

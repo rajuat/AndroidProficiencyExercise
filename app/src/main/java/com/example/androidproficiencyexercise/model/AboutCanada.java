@@ -1,4 +1,4 @@
-package com.example.androidproficiencyexcercise.model;
+package com.example.androidproficiencyexercise.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

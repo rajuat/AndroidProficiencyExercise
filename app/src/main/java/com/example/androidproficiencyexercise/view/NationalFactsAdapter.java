@@ -1,4 +1,4 @@
-package com.example.androidproficiencyexcercise.view;
+package com.example.androidproficiencyexercise.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.androidproficiencyexercise.R;
-import com.example.androidproficiencyexcercise.model.NationalFact;
+import com.example.androidproficiencyexercise.model.NationalFact;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

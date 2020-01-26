@@ -1,4 +1,4 @@
-package com.example.androidproficiencyexcercise.utils;
+package com.example.androidproficiencyexercise.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
