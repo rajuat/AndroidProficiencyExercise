@@ -1,14 +1,15 @@
 # Project Title
 
-Android Proficiency Exercise app displays facts about Canada. It is a single Activity app that contains a Fragment. The Fragment has SwipeRefreshLayout that allows users to refresh the ListView containing inside the SwipeRefreshLayout. Items in the ListView has a title, a description and a picture about certain facts, which are organized using LinearLayout for simplicity. The ListView uses ArrayAdapter with ViewHolder pattern for performance.
+Android Proficiency Exercise app displays facts about Canada.
 
-```
-The app infroms the user when network is unavailable.
-The app informs the user when server is unavailable.
-The app uses ViewModel pattern for state management of screen rotation.
-The app uses androidx.
-The Activity tuned the Fargment management for performance.
-```
+It is a single Activity app that contains a Fragment. The Fragment has SwipeRefreshLayout that allows users to refresh the ListView containing inside the SwipeRefreshLayout. Items in the ListView has a title, a description and a picture about certain facts, which are organized using LinearLayout for simplicity. The ListView uses ArrayAdapter with ViewHolder pattern for performance.
+
+#### Highlights
+* The app informs the user when network is unavailable.
+* The app informs the user when server is unavailable.
+* The app uses ViewModel pattern for state management of screen rotation.
+* The app uses androidx.
+* The Activity tuned the Fragment management for performance.
 
 ## Getting Started
 
