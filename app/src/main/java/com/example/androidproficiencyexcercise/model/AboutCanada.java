@@ -23,8 +23,8 @@ public class AboutCanada implements Serializable {
     /**
      * AboutCanada response constructor with parameters
      *
-     * @param title title of feed list
-     * @param nationalFacts feeds list
+     * @param title title of fact list
+     * @param nationalFacts fact list
      */
     public AboutCanada(String title, List<NationalFact> nationalFacts) {
         super();

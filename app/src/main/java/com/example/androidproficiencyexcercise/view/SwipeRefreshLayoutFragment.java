@@ -25,7 +25,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.internal.EverythingIsNonNull;
 
-
+/**
+ * The SwipeRefreshLayoutFragment is used to display a ListView inside of SwipeRefreshLayout.
+ * SwipeRefreshLayout is use to enable refresh of list with a swipe gesture.
+ * ListView holds the list of facts about Canada.
+ * The backend is call by Retrofit client and creates a handle called apiService for getting data.
+ */
 public class SwipeRefreshLayoutFragment extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
     private ListView listView;
@@ -36,6 +41,10 @@ public class SwipeRefreshLayoutFragment extends Fragment {
     public SwipeRefreshLayoutFragment() {
     }
 
+    /**
+     * This lifecycle hook inflates the layout and calls the getCachedFactsAndRender method.
+     * If the user refreshes the app, it calls the refreshFactsAndRender by calling the apiService.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -49,48 +58,69 @@ public class SwipeRefreshLayoutFragment extends Fragment {
         return view;
     }
 
-    private void getCachedFactsAndRender(){
+    private void getCachedFactsAndRender() {
         getFactsAndRender(false);
     }
 
-    private void refreshFactsAndRender(){
+    private void refreshFactsAndRender() {
         getFactsAndRender(true);
     }
 
-
     private void getFactsAndRender(boolean refresh) {
         if (NetworkCheck.isAvailable(getContext())) {
+            // ViewModel pattern for setting and getting cache
             SavedStateViewModel viewModel = new ViewModelProvider(this).get(SavedStateViewModel.class);
 
             if (viewModel.getFactsAboutCanada() == null || refresh) {
-                apiService = APIClient.getClient().create(APIInterface.class);
-                Call<AboutCanada> nationalFactsCall = apiService.getNationalFacts();
-                nationalFactsCall.enqueue(new Callback<AboutCanada>() {
-                    @Override
-                    public void onResponse(@EverythingIsNonNull Call<AboutCanada> call, @EverythingIsNonNull Response<AboutCanada> response) {
-                        aboutCanada = response.body();
-                        //Cache data
-                        viewModel.setFactsAboutCanada(aboutCanada);
-                        stopRefreshing();
-                        setAppTitle(aboutCanada.getTitle());
-                        setAdapter(aboutCanada);
-                    }
-
-                    @Override
-                    public void onFailure(@EverythingIsNonNull Call<AboutCanada> call, Throwable t) {
-                        stopRefreshing();
-                        Toast.makeText(getContext(), getString(R.string.server_error), Toast.LENGTH_LONG).show();
-                    }
-                });
+                getFactsFromBackendAndRender(viewModel);
             } else {
-                // Render data from cache
-                aboutCanada = viewModel.getFactsAboutCanada();
+                getFactsFromCacheAndRender(viewModel);
+            }
+        } else {
+            // Inform the user when there is no network.
+            Toast.makeText(getContext(), getString(R.string.no_network), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void getFactsFromBackendAndRender(SavedStateViewModel viewModel) {
+        apiService = APIClient.getClient().create(APIInterface.class);
+        Call<AboutCanada> nationalFactsCall = apiService.getNationalFacts();
+        nationalFactsCall.enqueue(new Callback<AboutCanada>() {
+            /**
+             * On successful response, cache the data, stop the refresh icon if any,
+             * set the app title and delegate responsibility to the adapter.
+             */
+            @Override
+            public void onResponse(@EverythingIsNonNull Call<AboutCanada> call, @EverythingIsNonNull Response<AboutCanada> response) {
+                aboutCanada = response.body();
+                //Cache data
+                viewModel.setFactsAboutCanada(aboutCanada);
                 stopRefreshing();
                 setAppTitle(aboutCanada.getTitle());
                 setAdapter(aboutCanada);
             }
-        } else {
-            Toast.makeText(getContext(), getString(R.string.no_network), Toast.LENGTH_LONG).show();
+
+            /**
+             * Informs the user for server errors.
+             */
+            @Override
+            public void onFailure(@EverythingIsNonNull Call<AboutCanada> call, Throwable t) {
+                stopRefreshing();
+                Toast.makeText(getContext(), getString(R.string.server_error), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void getFactsFromCacheAndRender(SavedStateViewModel viewModel) {
+        aboutCanada = viewModel.getFactsAboutCanada();
+        stopRefreshing();
+        setAppTitle(aboutCanada.getTitle());
+        setAdapter(aboutCanada);
+    }
+
+    private void stopRefreshing() {
+        if (swipeRefreshLayout.isRefreshing()) {
+            swipeRefreshLayout.setRefreshing(false);
         }
     }
 
@@ -104,11 +134,5 @@ public class SwipeRefreshLayoutFragment extends Fragment {
     private void setAdapter(AboutCanada aboutCanada) {
         NationalFactsAdapter adapter = new NationalFactsAdapter(getContext(), R.layout.row_layout, aboutCanada.getNationalFacts());
         listView.setAdapter(adapter);
-    }
-
-    private void stopRefreshing() {
-        if (swipeRefreshLayout.isRefreshing()) {
-            swipeRefreshLayout.setRefreshing(false);
-        }
     }
 }

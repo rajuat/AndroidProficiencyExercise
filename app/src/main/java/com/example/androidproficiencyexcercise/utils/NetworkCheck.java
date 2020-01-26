@@ -8,9 +8,8 @@ public class NetworkCheck {
 
     public static boolean isAvailable(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        // test for connection
         NetworkInfo networkInfo = null;
-        if (null != connectivityManager) {
+        if (connectivityManager != null) {
             networkInfo = connectivityManager.getActiveNetworkInfo();
         }
         return (networkInfo != null && networkInfo.isAvailable() && networkInfo.isConnected());
