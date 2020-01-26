@@ -1,8 +1,6 @@
 package com.example.androidproficiencyexcercise.viewmodel;
 
-import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
-import androidx.savedstate.SavedStateRegistryOwner;
 
 import com.example.androidproficiencyexcercise.model.AboutCanada;
 

@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.androidproficiencyexcercise.R;
+import com.example.androidproficiencyexercise.R;
 import com.example.androidproficiencyexcercise.backend.APIClient;
 import com.example.androidproficiencyexcercise.backend.APIInterface;
 import com.example.androidproficiencyexcercise.model.AboutCanada;

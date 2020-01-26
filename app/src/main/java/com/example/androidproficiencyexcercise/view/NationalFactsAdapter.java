@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.example.androidproficiencyexcercise.R;
+import com.example.androidproficiencyexercise.R;
 import com.example.androidproficiencyexcercise.model.NationalFact;
 import com.squareup.picasso.Picasso;
 
