@@ -7,7 +7,7 @@ It is a single Activity app that contains a Fragment. The Fragment has SwipeRefr
 #### Highlights
 * The app informs the user when network is unavailable.
 * The app informs the user when server is unavailable.
-* The app uses ViewModel pattern for state management of screen rotation.
+* The app uses ViewModel pattern for state management during screen rotation.
 * The app uses androidx.
 * The Activity tuned the Fragment management for performance.
 
